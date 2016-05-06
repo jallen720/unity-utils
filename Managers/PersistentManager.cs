@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils.Manager {
-    public class PersistentMgr<T> : MonoBehaviour where T : PersistentMgr<T> {
+namespace UnityUtils.Managers {
+    public class PersistentManager<T> : MonoBehaviour where T : PersistentManager<T> {
         private void Awake() {
             // If this is a duplicate instance, destroy this instance.
             if (Instance != this) {
