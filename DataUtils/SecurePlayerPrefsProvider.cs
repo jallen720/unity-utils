@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace UnityUtils.DataUtils {
-    public class SecurePlayerPrefsProvider : IDataProvider {
+    internal sealed class SecurePlayerPrefsProvider : IDataProvider {
         public SecurePlayerPrefsProvider() {
             ZPlayerPrefs.Initialize("8295saiYaABA3jao9i90dd", SystemInfo.deviceUniqueIdentifier);
         }

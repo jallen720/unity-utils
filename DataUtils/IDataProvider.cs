@@ -1,5 +1,5 @@
 ﻿namespace UnityUtils.DataUtils {
-    public interface IDataProvider {
+    internal interface IDataProvider {
         int Load(string key, int defaultValue);
         float Load(string key, float defaultValue);
         string Load(string key, string defaultValue);

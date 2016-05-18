@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace UnityUtils.DataUtils {
-    public class PlayerPrefsProvider : IDataProvider {
+    internal sealed class PlayerPrefsProvider : IDataProvider {
         string IDataProvider.Load(string key, string defaultValue) {
             return PlayerPrefs.GetString(key, defaultValue);
         }
