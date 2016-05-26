@@ -14,10 +14,14 @@ namespace UnityUtils.ConfigUtils {
             return instance = Resources.Load<T>(GetConfigPath());
         }
 
-        protected static string GetConfigPath() {
+        private static string GetConfigPath() {
             const string RESOURCE_DIRECTORY = "Configs/";
 
-            return RESOURCE_DIRECTORY + typeof(T).ToString();
+            return RESOURCE_DIRECTORY + GetConfigRelativePath();
+        }
+
+        private static string GetConfigRelativePath() {
+            return typeof(T).ToString().Replace('.', '/');
         }
     }
 }
