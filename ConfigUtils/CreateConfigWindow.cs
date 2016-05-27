@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 using UnityUtils.ConfigUtils;
+using UnityUtils.Extensions;
 using UnityUtils.Utils;
 
 namespace UnityUtilsEditor.ConfigUtils {
@@ -13,8 +14,7 @@ namespace UnityUtilsEditor.ConfigUtils {
         public override void Action(int instanceId, string pathName, string resourceFile) {
             AssetDatabase.CreateAsset(
                 EditorUtility.InstanceIDToObject(instanceId),
-                AssetDatabase.GenerateUniqueAssetPath(pathName)
-            );
+                AssetDatabase.GenerateUniqueAssetPath(pathName));
         }
     }
 
@@ -31,16 +31,16 @@ namespace UnityUtilsEditor.ConfigUtils {
         private static Type[] GetConfigTypes() {
             const string PROJECT_ASSEMBLY_NAME = "Assembly-CSharp";
 
-            return TypeUtils.GetAssemblyTypes(PROJECT_ASSEMBLY_NAME, IsConfig);
+            return TypeUtil.GetAssemblyTypes(PROJECT_ASSEMBLY_NAME, IsConfig);
         }
 
         private static bool IsConfig(Type type) {
-            return TypeUtils.IsDerivedOfGenericType(type, typeof(Config<>));
+            return type.IsDerivedFromGenericType(typeof(Config<>));
         }
 
         private string[] GetConfigNames() {
             return configTypes
-                .Select((Type configType) => configType.FullName)
+                .Select(configType => configType.FullName)
                 .ToArray();
         }
 
@@ -68,8 +68,7 @@ namespace UnityUtilsEditor.ConfigUtils {
                 endAction: CreateInstance<EndNameEdit>(),
                 pathName: configNames[selectionIndex] + ".asset",
                 icon: AssetPreview.GetMiniThumbnail(config),
-                resourceFile: null
-            );
+                resourceFile: null);
 
             Close();
         }
