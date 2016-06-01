@@ -23,8 +23,8 @@ namespace UnityUtils.Extensions {
             }
             else {
                 throw new Exception(
-                    "Cannot instantiate object as " + typeof(T).ToString() + " because the " +
-                    "does not have a component of that type.");
+                    "Cannot instantiate object as " + typeof(T).ToString() + " because it does " +
+                    " not have a component of that type.");
             }
         }
     }
